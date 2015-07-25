@@ -1,4 +1,7 @@
+*.classpath
+*.project
 *.class
+desktop.ini
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
