@@ -11,13 +11,13 @@ public class FileStreamTest
         buf=new byte[1024];
     }
 
-    public void readUntilEnd()
+    public void readUntilEnd() throws iOException
     {
         FileOutputStream fos=null;
 
         try
         {
-            fos=new FileOutputStream("∫πªÁ∫ª");
+            fos=new FileOutputStream("Î≥µÏÇ¨Î≥∏");
 
             for (int i; (i=fis.read(buf))!=-1; )
             {
@@ -26,40 +26,20 @@ public class FileStreamTest
             }
         } catch(IOException ioe)
         {
-            System.out.println("Ω∫∆Æ∏≤ø° ¿ÃªÛ¿Ã ¿÷¿Ω : "+ioe.getMessage());
-        } finally
-        {
-            try
-            {
-                    fis.close();
-            } catch(IOException ioe2)
-            {
-            }
-
-            try
-            {
-                    fos.close();
-            } catch(IOException ioe2)
-            {
-            }
+            fis.close();
+            fos.close();
         }
     }
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException
     {
         if (args.length<1)
         {
-            System.out.println("ªÁøÎπ˝ : java FileTest1 ∆ƒ¿œ¿Ã∏ß");
+            System.out.println("ÏÇ¨Ïö©Î≤ï : java FileTest1 ÌååÏùºÏù¥Î¶Ñ");
             System.exit(1);
         }
 
-        try
-        {
-            FileStreamTest test=new FileStreamTest(args[0]);
-            test.readUntilEnd();
-        } catch(FileNotFoundException fnfe)
-        {
-                System.out.println(args[0]+" ∆ƒ¿œ¿ª √£¿ª ºˆ æ¯Ω¿¥œ¥Ÿ.");
-        }
+        FileStreamTest test=new FileStreamTest(args[0]);
+        test.readUntilEnd();
     }
 }
