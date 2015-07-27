@@ -39,7 +39,7 @@ public class DataStreamTest
     {
         if (args.length<2)
         {
-            System.out.println("»ç¿ë¹ý : java DataStreamTest x y");
+            System.out.println("ì‚¬ìš©ë²•: java DataStreamTest x y");
             System.exit(1);
         }
 
