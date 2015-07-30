@@ -1,38 +1,33 @@
-import java.io.*;
-import java.net.*;
-import java.util.*;
-import java.nio.*;
-import java.nio.channels.*;
+import java.net.InetSocketAddress;
+import java.net.SocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.SocketChannel;
 
-public class SocketChannelTest1
-{
-    public static void main(String[] args) throws Exception
-    {
-        if (args.length<1)
-        {
-            System.out.println("»ç¿ë¹ý : java SocketChannelTest1 Á¢¼ÓÇÒÆ÷Æ®¹øÈ£");
+public class SocketChannelTest1 {
+    public static void main(String[] args) throws Exception {
+        if (args.length < 1) {
+            System.out.println("ì‚¬ìš©ë²• : java SocketChannelTest1 ì ‘ì†í• í¬íŠ¸ë²ˆí˜¸");
             System.exit(1);
         }
 
-        int ¼­¹ö¼ÒÄÏÆ÷Æ®=Integer.parseInt(args[0]);
-        SocketAddress addr=new InetSocketAddress("localhost", ¼­¹ö¼ÒÄÏÆ÷Æ®);
-        SocketChannel socket=SocketChannel.open(addr);
-//        socket.configureBlocking(false); // ÀÌ ¶óÀÎÀ» Ãß°¡ÇÏ¸é °á°ú°¡ ´Þ¶óÁø´Ù.
+        int ì„œë²„ì†Œì¼“í¬íŠ¸ = Integer.parseInt(args[0]);
+        SocketAddress addr = new InetSocketAddress("localhost", ì„œë²„ì†Œì¼“í¬íŠ¸);
+        SocketChannel socket = SocketChannel.open(addr);
+        // socket.configureBlocking(false); // ì´ ë¼ì¸ì„ ì¶”ê°€í•˜ë©´ ê²°ê³¼ê°€ ë‹¬ë¼ì§„ë‹¤.
 
         System.out.println(socket);
         System.out.println(socket.isBlocking());
 
-        ByteBuffer buf=ByteBuffer.allocate(100);
+        ByteBuffer buf = ByteBuffer.allocate(100);
         buf.limit(10);
-        int wrote=socket.write(buf);
-        System.out.println("write : "+wrote);
+        int wrote = socket.write(buf);
+        System.out.println("write : " + wrote);
         buf.clear();
 
-        int read=0;
-        while(true)
-        {
-            read=socket.read(buf);
-            System.out.println("read : "+read);
+        int read = 0;
+        while (true) {
+            read = socket.read(buf);
+            System.out.println("read : " + read);
             Thread.sleep(1000);
         }
     }

@@ -1,28 +1,24 @@
 import java.io.*;
 
-public class ProcessTest
-{
-    public static void main(String[] args) throws IOException
-    {
-        if (args.length<1)
-        {
-            System.out.println("»ç¿ë¹ý : java ProcessTest ÇÁ·Î±×·¥ÀÌ¸§");
+public class ProcessTest {
+    public static void main(String[] args) throws IOException {
+        if (args.length < 1) {
+            System.out.println("ì‚¬ìš©ë²• : java ProcessTest í”„ë¡œê·¸ëž¨ì´ë¦„");
             System.exit(1);
         }
 
-        Runtime rt=Runtime.getRuntime();
-        Process p=rt.exec(args);
-        InputStream is=p.getInputStream();
-        BufferedReader br=new BufferedReader(new InputStreamReader(is));
+        Runtime rt = Runtime.getRuntime();
+        Process p = rt.exec(args);
+        InputStream is = p.getInputStream();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
-        System.out.println(args[0]+" ÇÁ·Î¼¼½º·ÎºÎÅÍÀÇ Ãâ·Â");
+        System.out.println(args[0] + " í”„ë¡œì„¸ìŠ¤ë¡œë¶€í„°ì˜ ì¶œë ¥");
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        for (String str; (str=br.readLine())!=null; )
-        {
+        for (String str; (str = br.readLine()) != null;) {
             System.out.println(str);
         }
 
         System.out.println("-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-");
-        System.out.println("ÇÁ·Î¼¼½º Á¾·áÄÚµå : "+p.exitValue());
+        System.out.println("í”„ë¡œì„¸ìŠ¤ ì¢…ë£Œì½”ë“œ : " + p.exitValue());
     }
 }

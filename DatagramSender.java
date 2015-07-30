@@ -1,37 +1,32 @@
-import java.io.*;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetSocketAddress;
 
-public class DatagramSender
-{
-    public static void main(String[] args) throws Exception
-    {
-        if (args.length<1)
-        {
-            System.out.println("»ç¿ë¹ý : java DatagramSender ¼­¹öÁÖ¼Ò");
+public class DatagramSender {
+    public static void main(String[] args) throws Exception {
+        if (args.length < 1) {
+            System.out.println("ì‚¬ìš©ë²• : java DatagramSender ì„œë²„ì£¼ì†Œ");
             System.exit(1);
         }
 
-        byte[] buf=new byte[8];
-        DatagramSocket ds=new DatagramSocket();
-        DatagramPacket dp=new DatagramPacket(buf, buf.length
-            , new InetSocketAddress(args[0], 22500));
+        byte[] buf = new byte[8];
+        DatagramSocket ds = new DatagramSocket();
+        DatagramPacket dp = new DatagramPacket(buf, buf.length,
+                new InetSocketAddress(args[0], 22500));
 
-        while(true)
-        {
+        while (true) {
             setTime(buf);
             ds.send(dp);
             Thread.sleep(500);
         }
     }
 
-    static void setTime(byte[] buf)
-    {
-        long time=System.currentTimeMillis();
+    static void setTime(byte[] buf) {
+        long time = System.currentTimeMillis();
 
-        for (int i=0; i<8; i++)
-        {
-            long value=time>>(i*8);
-            buf[i]=(byte)(value & 0xff);
+        for (int i = 0; i < 8; i++) {
+            long value = time >> (i * 8);
+            buf[i] = (byte) (value & 0xff);
         }
         System.out.println(time);
     }

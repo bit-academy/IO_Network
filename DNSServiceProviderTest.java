@@ -11,19 +11,19 @@ public class DNSServiceProviderTest {
         env.put(Context.PROVIDER_URL, "dns://202.30.143.11");
         DirContext ctx = new InitialDirContext(env);
 
-        System.out.println(" === µµ¸ÞÀÎ ³×ÀÓÀ» ³ÖÀ¸¼¼¿ä.");
+        System.out.println(" === ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.");
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         for (String str; (str = br.readLine()) != null;) {
             Attributes attrs = ctx.getAttributes(str);
             if (attrs == null) {
-                System.out.println("µî·ÏµÈ Á¤º¸°¡ ¾ø½À´Ï´Ù.");
+                System.out.println("ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
                 continue;
             }
 
             for (NamingEnumeration enums = attrs.getAll(); enums.hasMore();) {
                 System.out.println(enums.next());
             }
-            System.out.println("\n === µµ¸ÞÀÎ ³×ÀÓÀ» ³ÖÀ¸¼¼¿ä.");
+            System.out.println("\n === ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.");
         }
     }
 }

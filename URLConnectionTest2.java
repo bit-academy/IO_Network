@@ -2,47 +2,51 @@ import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class URLConnectionTest2
-{
-    public static void main(String[] args) throws Exception
-    {
-        if (args.length<1)
-        {
-                System.out.println("»ç¿ë¹ı : java URLConnectionTest2 <url>");
-                System.exit(1);
+public class URLConnectionTest2 {
+    public static void main(String[] args) throws Exception {
+        if (args.length < 1) {
+            System.out.println("ì‚¬ìš©ë²• : java URLConnectionTest2 <url>");
+            System.exit(1);
         }
 
-        URL url=new URL(args[0]);
-        URLConnection con=url.openConnection();
+        URL url = new URL(args[0]);
+        URLConnection con = url.openConnection();
 
-        System.out.println("\n### URLConnection ÀÇ ±âº»°ª");
-        System.out.println("URLConnection.getDefaultAllowUserInteraction() : "+con.getDefaultAllowUserInteraction());
-        System.out.println("URLConnection.getDefaultUseCaches() : "+con.getDefaultUseCaches());
+        System.out.println("\n### URLConnection ì˜ ê¸°ë³¸ê°’");
+        System.out.println("URLConnection.getDefaultAllowUserInteraction() : "
+                + con.getDefaultAllowUserInteraction());
+        System.out.println("URLConnection.getDefaultUseCaches() : "
+                + con.getDefaultUseCaches());
 
-        System.out.println("\n### URLConnection ÀÇ ÃÖÃÊ Á¢¼Ó¿ë Á¤º¸");
-        System.out.println("con.getRequestProperties() : "+con.getRequestProperties());
-        System.out.println("con.getAllowUserInteraction() : "+con.getAllowUserInteraction());
-        System.out.println("con.getDoInput() : "+con.getDoInput());
-        System.out.println("con.getDoOutput() : "+con.getDoOutput());
-        System.out.println("con.getIfModifiedSince() : "+con.getIfModifiedSince());
-        System.out.println("con.getUseCaches() : "+con.getUseCaches());
+        System.out.println("\n### URLConnection ì˜ ìµœì´ˆ ì ‘ì†ìš© ì •ë³´");
+        System.out.println("con.getRequestProperties() : "
+                + con.getRequestProperties());
+        System.out.println("con.getAllowUserInteraction() : "
+                + con.getAllowUserInteraction());
+        System.out.println("con.getDoInput() : " + con.getDoInput());
+        System.out.println("con.getDoOutput() : " + con.getDoOutput());
+        System.out.println("con.getIfModifiedSince() : "
+                + con.getIfModifiedSince());
+        System.out.println("con.getUseCaches() : " + con.getUseCaches());
 
         con.connect();
 
-        System.out.println("\n### URLConnection ÀÚ¿ø¿¡ ´ëÇÑ Á¤º¸[1]");
-        System.out.println("con.getContentEncoding() : "+con.getContentEncoding());
-        System.out.println("con.getContentLength() : "+con.getContentLength());
-        System.out.println("con.getContentType() : "+con.getContentType());
-        System.out.println("con.getDate() : "+con.getDate());
-        System.out.println("con.getExpiration() : "+con.getExpiration());
-        System.out.println("con.getLastModified() : "+con.getLastModified());
-        System.out.println("con.getURL() : "+con.getURL());
+        System.out.println("\n### URLConnection ìì›ì— ëŒ€í•œ ì •ë³´[1]");
+        System.out.println("con.getContentEncoding() : "
+                + con.getContentEncoding());
+        System.out
+                .println("con.getContentLength() : " + con.getContentLength());
+        System.out.println("con.getContentType() : " + con.getContentType());
+        System.out.println("con.getDate() : " + con.getDate());
+        System.out.println("con.getExpiration() : " + con.getExpiration());
+        System.out.println("con.getLastModified() : " + con.getLastModified());
+        System.out.println("con.getURL() : " + con.getURL());
 
-        System.out.println("\n### URLConnection ÀÚ¿ø¿¡ ´ëÇÑ Á¤º¸[2]");
-        System.out.println("con.getHeaderFields() : "+con.getHeaderFields());
+        System.out.println("\n### URLConnection ìì›ì— ëŒ€í•œ ì •ë³´[2]");
+        System.out.println("con.getHeaderFields() : " + con.getHeaderFields());
 
-        System.out.println("\n### URLConnection ÀÚ¿øÀÇ ³»¿ë");
-        System.out.println("con.getContent() : "+con.getContent());
-        System.out.println("con.getInputStream() : "+con.getInputStream());
+        System.out.println("\n### URLConnection ìì›ì˜ ë‚´ìš©");
+        System.out.println("con.getContent() : " + con.getContent());
+        System.out.println("con.getInputStream() : " + con.getInputStream());
     }
 }

@@ -1,43 +1,37 @@
 import java.io.*;
 import java.net.*;
 
-public class NonInterruptibleStream extends Thread
-{
+public class NonInterruptibleStream extends Thread {
     static ServerSocket server;
     static Socket socket;
     static InputStream is;
 
-    public void run()
-    {
-        try
-        {
-            server=new ServerSocket(80);
-            System.out.println("accept() Áß...");
-            socket=server.accept();
-        } catch(Exception e)
-        {
+    public void run() {
+        try {
+            server = new ServerSocket(80);
+            System.out.println("accept() ì¤‘...");
+            socket = server.accept();
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("accept() ÇØ¼­ Socket À» ¾ò¾úÀ½.");
+        System.out.println("accept() í•´ì„œ Socket ì„ ì–»ì—ˆìŒ.");
 
-        try
-        {
-            InputStream is=socket.getInputStream();
-            while(true)
-            {
-                System.out.write(is.read());
+        try {
+            InputStream is = socket.getInputStream();
+
+            for (int i = 0; (i = is.read()) != -1;) {
+                // sleep(1);
+                System.out.write(i);
             }
-        } catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public static void main(String[] args) throws Exception
-    {
-        Thread thread=new NonInterruptibleStream();
+    public static void main(String[] args) throws Exception {
+        Thread thread = new NonInterruptibleStream();
         thread.start();
-        System.out.println("½º·¹µå¿¡ interrupt() ¸¦ ¿¹¾àÇÕ´Ï´Ù.");
+        System.out.println("ìŠ¤ë ˆë“œì— interrupt() ë¥¼ ì˜ˆì•½í•©ë‹ˆë‹¤.");
         thread.interrupt();
         Thread.sleep(1000);
     }
