@@ -1,57 +1,48 @@
 import java.io.*;
 import java.net.*;
 
-public class ChatServer implements Runnable
-{
+public class ChatServer implements Runnable {
     ServerSocket server;
 
-    public ChatServer() throws IOException
-    {
-    server=new ServerSocket(22500);
+    public ChatServer() throws IOException {
+        server = new ServerSocket(22500);
     }
 
-    public void run()
-    {
-        try
-        {
-            Socket Á¢¼Ó;
-            InputStream ÀÔ·Â1, ÀÔ·Â2;
-            OutputStream Ãâ·Â1, Ãâ·Â2;
+    public void run() {
+        try {
+            Socket connection;
+            InputStream input1, input2;
+            OutputStream output1, output2;
 
-            while(true)
-            {
-                System.out.println("ChatServer¿¡¼­ Á¢¼ÓÀ» ±â´Ù¸³´Ï´Ù.");
-                Á¢¼Ó=server.accept();
-                System.out.println("Ã¹ ¹øÂ° Á¢¼ÓµÇ¾ú½À´Ï´Ù.\t"+Á¢¼Ó);
-                ÀÔ·Â1=Á¢¼Ó.getInputStream();
-                Ãâ·Â1=Á¢¼Ó.getOutputStream();
+            while (true) {
+                System.out.println("ChatServerì—ì„œ connectionì„ ê¸°ë‹¤ë¦½ë‹ˆë‹¤.");
+                connection = server.accept();
+                System.out.println("ì²« ë²ˆì§¸ connectionë˜ì—ˆìŠµë‹ˆë‹¤.\t" + connection);
+                input1 = connection.getInputStream();
+                output1 = connection.getOutputStream();
 
-                Á¢¼Ó=server.accept();
-                System.out.println("µÎ ¹øÂ° Á¢¼ÓµÇ¾ú½À´Ï´Ù.\t"+Á¢¼Ó);
-                ÀÔ·Â2=Á¢¼Ó.getInputStream();
-                Ãâ·Â2=Á¢¼Ó.getOutputStream();
+                connection = server.accept();
+                System.out.println("ë‘ ë²ˆì§¸ connectionë˜ì—ˆìŠµë‹ˆë‹¤.\t" + connection);
+                input2 = connection.getInputStream();
+                output2 = connection.getOutputStream();
 
-                new ChatDataExchanger(ÀÔ·Â1, Ãâ·Â1, ÀÔ·Â2, Ãâ·Â2);
+                new ChatDataExchanger(input1, output1, input2, output2);
 
-                System.out.println("Ã¤ÆÃ¹æÀ» ¸¸µé¾ú½À´Ï´Ù. ----------\n");
+                System.out.println("ì±„íŒ…ë°©ì„ ë§Œë“¤ì—ˆìŠµë‹ˆë‹¤. ----------\n");
             }
-        } catch(Exception e)
-        {
-            System.err.println("Ã¤ÆÃÁØºñÁß ¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.");
+        } catch (Exception e) {
+            System.err.println("ì±„íŒ…ì¤€ë¹„ì¤‘ ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
             e.printStackTrace();
         }
-	}
+    }
 
-	public static void main(String[] args)
-	{
-        try
-        {
-            ChatServer cs=new ChatServer();
+    public static void main(String[] args) {
+        try {
+            ChatServer cs = new ChatServer();
             new Thread(cs).start();
-        } catch(IOException ioe)
-        {
-            System.err.println("ChatServer¸¦ ½ÇÇàÇÒ ¼ö ¾ø½À´Ï´Ù.");
+        } catch (IOException ioe) {
+            System.err.println("ChatServerë¥¼ ì‹¤í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
             ioe.printStackTrace();
         }
-	}
+    }
 }

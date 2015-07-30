@@ -1,55 +1,48 @@
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
-public class ChatDataExchanger
-{
+public class ChatDataExchanger {
     ExchangeThread readThread, writeThread;
 
-    public ChatDataExchanger(InputStream ÀÔ·Âa, OutputStream Ãâ·Âa
-        , InputStream ÀÔ·Âb, OutputStream Ãâ·Âb) throws IOException
-    {
-        readThread=new ExchangeThread(ÀÔ·Âa, Ãâ·Âb);
+    public ChatDataExchanger(InputStream inputA, OutputStream outputA,
+            InputStream inputB, OutputStream outputB) throws IOException {
+        readThread = new ExchangeThread(inputA, outputB);
         readThread.start();
-        writeThread=new ExchangeThread(ÀÔ·Âb, Ãâ·Âa);
+        writeThread = new ExchangeThread(inputB, outputA);
         writeThread.start();
     }
 
-    class ExchangeThread extends Thread
-    {
+    class ExchangeThread extends Thread {
         BufferedReader reader;
         PrintStream writer;
 
-        ExchangeThread(InputStream ÀÔ·Â, OutputStream Ãâ·Â) throws IOException
-        {
-            reader=new BufferedReader(new InputStreamReader(ÀÔ·Â));
+        ExchangeThread(InputStream input, OutputStream output)
+                throws IOException {
+            reader = new BufferedReader(new InputStreamReader(input));
 
-            if (Ãâ·Â==System.out)
-            {
-                writer=(PrintStream)Ãâ·Â;
-            } else
-            {
-                writer=new PrintStream(Ãâ·Â, true);
+            if (output == System.out) {
+                writer = (PrintStream) output;
+            } else {
+                writer = new PrintStream(output, true);
             }
         }
 
-        public void run()
-        {
-            try
-            {
-                while(true)
-                {
-                    for (String str; (str=reader.readLine())!=null; )
-                    {
-                        if (writer==System.out)
-                        {
-                            writer.print("[»ó´ë¹æ] : ");
+        public void run() {
+            try {
+                while (true) {
+                    for (String str; (str = reader.readLine()) != null;) {
+                        if (writer == System.out) {
+                            writer.print("[ìƒëŒ€ë°©] : ");
                         }
                         writer.println(str);
                     }
                 }
-            } catch(Exception e)
-            {
-                System.err.println("Ã¤ÆÃµ¥ÀÌÅÍ¸¦ ÀĞ¾î¿À´Â Áß ¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.");
+            } catch (Exception e) {
+                System.err.println("ì±„íŒ…ë°ì´í„°ë¥¼ ì½ì–´ì˜¤ëŠ” ì¤‘ ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
                 e.printStackTrace();
             }
         }

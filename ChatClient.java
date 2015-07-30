@@ -1,24 +1,20 @@
 import java.io.*;
 import java.net.*;
 
-public class ChatClient
-{
-    public ChatClient(String server) throws Exception
-    {
-        Socket socket=new Socket(server, 22500);
-        InputStream ÀÔ·Â=socket.getInputStream();
-        OutputStream Ãâ·Â=socket.getOutputStream();
-        new ChatDataExchanger(System.in, System.out, ÀÔ·Â, Ãâ·Â);
+public class ChatClient {
+    public ChatClient(String server) throws Exception {
+        Socket socket = new Socket(server, 22500);
+        InputStream input = socket.getInputStream();
+        OutputStream output = socket.getOutputStream();
+        new ChatDataExchanger(System.in, System.out, input, output);
     }
 
-    public static void main(String[] args) throws Exception
-    {
-        if (args.length<1)
-        {
-            System.out.println("»ç¿ë¹ý : java ChatClent ¼­¹öÁÖ¼Ò");
+    public static void main(String[] args) throws Exception {
+        if (args.length < 1) {
+            System.out.println("ì‚¬ìš©ë²• : java ChatClent ì„œë²„ì£¼ì†Œ");
             System.exit(1);
         }
 
-        ChatClient client=new ChatClient(args[0]);
+        ChatClient client = new ChatClient(args[0]);
     }
 }
