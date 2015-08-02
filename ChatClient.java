@@ -1,5 +1,6 @@
-import java.io.*;
-import java.net.*;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.Socket;
 
 public class ChatClient {
     public ChatClient(String server) throws Exception {
