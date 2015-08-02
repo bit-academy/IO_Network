@@ -22,7 +22,7 @@ public class MultiChatDataExchanger {
 
         ExchangeThread(InputStream input, OutputStream output)
                 throws IOException {
-            reader = new BufferedReader(new InputStreamReader(input, "EUC-KR"));
+            reader = new BufferedReader(new InputStreamReader(input));
 
             if (output == System.out) {
                 writer = (PrintStream) output;

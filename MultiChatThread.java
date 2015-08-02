@@ -17,12 +17,11 @@ public class MultiChatThread extends Thread {
         server = _server;
         client = _client;
 
-        InputStreamReader isr = new InputStreamReader(client.getInputStream(),
-                "EUC-KR");
+        InputStreamReader isr = new InputStreamReader(client.getInputStream());
         br = new BufferedReader(isr);
 
         OutputStreamWriter osw = new OutputStreamWriter(
-                client.getOutputStream(), "EUC-KR");
+                client.getOutputStream());
         bw = new BufferedWriter(osw);
     }
 
